@@ -1,0 +1,6 @@
+framework module AVCodecSDK {
+  umbrella header "AVCodecSDK.h"
+
+  export *
+  module * { export * }
+}
