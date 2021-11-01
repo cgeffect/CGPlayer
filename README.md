@@ -1,247 +1,211 @@
-# CGCodecSDK
+音频接口
+
+NS_ASSUME_NONNULL_BEGIN
 
 /**
- CGAVPlayer 的播放状态
+ AVTAudioPlayer 的播放状态
  
  @since v1.0.0
  */
-typedef NS_ENUM(NSInteger, CGPlayerStatus) {
+typedef NS_ENUM(NSInteger, AVTAudioPlayerStatus) {
     
     /**
-     CGAVPlayer 未知状态，只会作为 init 后的初始状态，开始播放之后任何情况下都不会再回到此状态。
+     AVTAudioPlayer 未知状态，只会作为 init 后的初始状态，开始播放之后任何情况下都不会再回到此状态。
      @since v1.0.0
      */
-    CGPlayerStatusUnknow = 0,
+    AVTAudioPlayerStatusUnknow = 0,
     
     /**
-     CGAVPlayer 播放组件准备完成，准备开始播放。
+     AVTAudioPlayer 播放组件准备完成，准备开始播放。
      
      @since v1.0.0
      */
-    CGPlayerStatusReady,
+    AVTAudioPlayerStatusReady,
     
     /**
-     CGAVPlayer 正在播放状态。
+     AVTAudioPlayer 正在播放状态。
      
      @since v1.0.0
      */
-    CGPlayerStatusPlaying,
+    AVTAudioPlayerStatusPlaying,
     
     /**
-     CGAVPlayer 暂停状态。
+     AVTAudioPlayer 暂停状态。
      
      @since v1.0.0
      */
-    CGPlayerStatusPaused,
+    AVTAudioPlayerStatusPaused,
     
     /**
-     CGAVPlayer 继续播放状态。
+     AVTAudioPlayer 继续播放状态。
      
      @since v1.0.0
      */
-    CGPlayerStatusResumed,
+    AVTAudioPlayerStatusResumed,
     
     /**
-     @abstract CGAVPlayer 停止状态
+     @abstract AVTAudioPlayer 停止状态
      
      @since v1.0.0
      */
-    CGPlayerStatusStopped,
+    AVTAudioPlayerStatusStopped,
     
     /**
-     CGAVPlayer 播放完成
+     AVTAudioPlayer 播放完成
      
      @since v1.0.0
      */
-    CGPlayerStatusCompleted,
+    AVTAudioPlayerStatusCompleted,
     
     /**
-     CGAVPlayer 错误状态，播放出现错误时会出现此状态。
+     AVTAudioPlayer 错误状态，播放出现错误时会出现此状态。
      
      @since v1.0.0
      */
-    CGPlayerStatusError,
+    AVTAudioPlayerStatusError,
     
     /**
-     CGAVPlayer 销毁。
+     AVTAudioPlayer 销毁。
      
      @since v1.0.0
      */
-    CGPlayerStatusDestroyed,
+    AVTAudioPlayerStatusDestroyed,
 };
 
-typedef NS_ENUM(NSInteger, AVTPlayerFirstRenderType) {
-    AVTPlayerFirstRenderTypeVideo = 0, // 视频
-    AVTPlayerFirstRenderTypeAudio // 音频
-};
-
-@class CGAVPlayer;
-@protocol CGPlayerDelegate <NSObject>
+@class AVTAudioPlayer;
+@protocol AVTAudioPlayerDelegate <NSObject>
 @optional
 
 /**
- 告知代理对象 CGAVPlayer 即将开始进入后台播放任务
+ 告知代理对象 AVTAudioPlayer 即将开始进入后台播放任务
  
- @param player 调用该代理方法的 CGAVPlayer 对象
+ @param player 调用该代理方法的 AVTAudioPlayer 对象
  
  @since v1.0.0
  */
-- (void)playerWillBeginBackgroundTask:(nonnull CGAVPlayer *)player;
+- (void)playerWillBeginBackgroundTask:(nonnull AVTAudioPlayer *)player;
 
 /**
- 告知代理对象 CGAVPlayer 即将结束后台播放状态任务
+ 告知代理对象 AVTAudioPlayer 即将结束后台播放状态任务
  
- @param player 调用该方法的 CGAVPlayer 对象
+ @param player 调用该方法的 AVTAudioPlayer 对象
  
  @since v1.0.0
  */
-- (void)playerWillEndBackgroundTask:(nonnull CGAVPlayer *)player;
+- (void)playerWillEndBackgroundTask:(nonnull AVTAudioPlayer *)player;
 
 /**
  告知代理对象播放器状态变更
  
- @param player 调用该方法的 CGAVPlayer 对象
- @param status  变更之后的 CGAVPlayer 状态
+ @param player 调用该方法的 AVTAudioPlayer 对象
+ @param status  变更之后的 AVTAudioPlayer 状态
  
  @since v1.0.0
  */
-- (void)player:(nonnull CGAVPlayer *)player statusChanged:(CGPlayerStatus)status;
+- (void)player:(nonnull AVTAudioPlayer *)player statusChanged:(AVTAudioPlayerStatus)status;
 
 /**
  告知代理对象播放器因错误停止播放
  
- @param player 调用该方法的 CGAVPlayer 对象
+ @param player 调用该方法的 AVTAudioPlayer 对象
  @param error  携带播放器停止播放错误信息的 NSError 对象
  
  @since v1.0.0
  */
-- (void)player:(nonnull CGAVPlayer *)player stoppedWithError:(nullable NSError *)error;
+- (void)player:(nonnull AVTAudioPlayer *)player stoppedWithError:(nullable NSError *)error;
 
 /**
  已播放进度
  
- @param player 调用该方法的 CGAVPlayer 对象
+ @param player 调用该方法的 AVTAudioPlayer 对象
  @param progress  当前播放的进度, 单位ms。
  
  @since v1.0.0
  */
-- (void)player:(nonnull CGAVPlayer *)player progress:(int64_t)progress;
-
-/**
- 音视频渲染首帧回调通知
- 
- @param player 调用该方法的 CGAVPlayer 对象
- @param firstRenderType 音视频首帧回调通知类型
- 
- @since v1.0.0
- */
-- (void)player:(nonnull CGAVPlayer *)player firstRender:(AVTPlayerFirstRenderType)firstRenderType;
-
-/**
- 视频宽高数据回调通知
-
- @param player 调用该方法的 CGAVPlayer 对象
- @param width 视频流宽
- @param height 视频流高
- 
- @since v1.0.0
- */
-- (void)player:(nonnull CGAVPlayer *)player width:(int)width height:(int)height;
+- (void)player:(nonnull AVTAudioPlayer *)player progress:(int64_t)progress;
 
 /**
  seekTo 完成的回调通知
  
- @param player 调用该方法的 CGAVPlayer 对象
+ @param player 调用该方法的 AVTAudioPlayer 对象
  
  @since v1.0.0
  */
-- (void)player:(nonnull CGAVPlayer *)player seekToCompleted:(BOOL)isCompleted;
+- (void)player:(nonnull AVTAudioPlayer *)player seekToCompleted:(BOOL)isCompleted;
 
 @end
 
+@interface AVTAudioPlayer : NSObject
 /**
- getScreenShotWithCompletionHandler 截图操作为异步，
- 完成后将通过 ScreenShotWithCompletionHandler 类型的 block 回调返回 UIImage 类型图片数据。
+ 单例播放器对象
  
  @since v1.0.0
  */
-typedef void (^ScreenShotWithCompletionHandler)(UIImage * _Nullable image);
++(AVTAudioPlayer *)sharePlayer;
 
-@interface CGAVPlayer : NSObject
+/**
+ 资源文件, 支持mp3, mp4, mov
+ 
+ @since v1.0.0
+ */
+- (void)loadWithURL:(NSString *)url;
 
-- (instancetype)initWithPlayerItem:(nullable AVTPlayerItem *)item;
+/**
+ pcm数据, 调试使用, 在(loadWithURL:)执行之前赋值
+ 
+ @since v1.0.0
+ */
+@property(nonatomic, strong) NSString *pcmPath;
 
-- (AVTPlayerLayer *)playerLayerWithFrame:(CGRect)frame;
+/**
+ 音频播放代理
+ 
+ @since v1.0.0
+ */
+@property(weak, nullable) id<AVTAudioPlayerDelegate> delegate;
 
-@property (nonatomic, weak) id<CGPlayerDelegate>delegate;
+/**
+ 音频轨道时长
+ 
+ @since v1.0.0
+ */
+@property(readonly) NSTimeInterval durationMs;
 
-@property (nonatomic, strong) AVTPlayerItem *playerItem;
+/**
+ 资源URL
+ 
+ @since v1.0.0
+ */
+@property(readonly, nullable) NSURL *url;
+
 /**
  CGAVPlayer 的播放状态
  
  @since v1.0.0
  */
-@property (nonatomic, readonly) CGPlayerStatus status;
+@property (nonatomic, readonly) AVTAudioPlayerStatus status;
 
 /**
- 回调方法的调用队列
- @discussion 默认是在主线程
+ 播放的声音 0 - 1, 0 静音, 1 最大声音
  
  @since v1.0.0
  */
-@property (nonatomic, strong, nullable) dispatch_queue_t delegateQueue;
+@property float volume;
 
-#pragma mark play info
 /**
- 指示当前 CGAVPlayer 是否处于正在播放状态
+ 循环播放的次数, -1 无线循环
  
  @since v1.0.0
  */
-@property (nonatomic, assign, readonly, getter=isPlaying) BOOL playing;
+@property NSInteger numberOfLoops;
 
-/**
- CGAVPlayer 的当前播放时间
- 
- @since v1.0.0
- */
-@property (nonatomic, assign, readonly) CMTime currentTime;
+/* settings */
+@property(readonly) NSDictionary<NSString *, id> *settings; /* returns a settings dictionary with keys as described in AVAudioSettings.h */
 
-/**
- 是否渲染画面，默认为 YES
- 
- @since v1.0.0
- */
-@property (nonatomic, assign) BOOL enableRender;
+/* returns the format of the audio data */
+//@property(readonly) AVTAudioFormat *format;
+@property(nonatomic, strong, readonly)AVTAudioFormat *audioFormat;
 
-/**
- 变速播放，范围是 0.5-2.0，默认是 1.0
- 
- @since v1.0.0
- */
-@property (nonatomic, assign) double playSpeed;
-
-/**
- 视频剪裁播放，配置参数：(x, y, width, height)，尺寸需是 4 的倍数，默认全视频画面
- 
- @warning 该属性只播放和渲染指定位置的画面，其中 x、y、width、height 值均取整使用，若播放新链接需裁剪，则每次新链接 play 前重新设置；若需重置为全视频画面，传 CGRectZero 即可
- 
- @since v1.0.0
- */
-@property (nonatomic, assign) CGRect videoClipFrame;
-
-/**
- 是否循环播放，默认为 NO
- 
- @since v1.0.0
- */
-@property (nonatomic, assign) BOOL loopPlay;
-
-/**
- 视频封面
- 
- @since v1.0.0
- */
-@property (nonatomic, assign) UIImage *videoCover;
 
 #pragma mark control
 /**
@@ -277,7 +241,7 @@ typedef void (^ScreenShotWithCompletionHandler)(UIImage * _Nullable image);
  
  @since v1.0.0
  */
-- (void)seekTo:(CMTime)time;
+- (void)seekTo:(float)time;
 
 /**
  标记seek事件
@@ -292,92 +256,7 @@ typedef void (^ScreenShotWithCompletionHandler)(UIImage * _Nullable image);
  */
 - (void)holdSeek:(BOOL)isSeek;
 
-#pragma mark AVPlayerMediaControl
-
-/**
- 是否需要静音 CGAVPlayer，默认值为NO
- 
- @since v1.0.0
- */
-@property (nonatomic, assign, getter=isMute) BOOL mute;
-
-/**
- *  设置音量，范围是0-3.0，默认是1.0
- *
- *  @param volume 音量
- *
- *  @since v1.0.0
- */
-- (void)setVolume:(float)volume;
-
-/**
- *  获取音量
- *
- *  @since v1.0.0
- *
- *  @return 音量
- */
-- (float)getVolume;
-
-/**
- *  截图
- *  @param handle 类型 ScreenShotWithCompletionHandler block 。
- *
- *  @discussion 截图操作为异步，完成后将通过 handle 回调返回 UIImage 类型图片数据。
- *              该功能只支持软解
- *
- *  @since v1.0.0
- *
- */
-- (void)getScreenShotWithCompletionHandler:(nullable ScreenShotWithCompletionHandler)handle;
-
-#pragma mark Output
-
-/**
- *  设置AVTPlayerVideoOutput
- *  @discussion 需要获取渲染视频帧数据则创建
- *
- *  @since v1.0.0
- */
-- (void)addVideoOutput:(AVPlayerVideoOutput *)output;
-
-/**
- *  移除AVTPlayerVideoOutput
- *
- *  @since v1.0.0
- */
-- (void)removeVideoOutput:(AVPlayerVideoOutput *)output;
-
-/**
- *  设置AVTPlayerAudioOutput
- *
- *  @since v1.0.0
- */
-- (void)addAudioOutput:(AVPlayerAudioOutput *)output;
-
-/**
- *  移除AVTPlayerAudioOutput
- *
- *  @since v1.0.0
- */
-- (void)removeAudioOutput:(AVPlayerAudioOutput *)output;
-
-/*!
- @property videoComposition
- @abstract Indicates the video composition settings to be applied during playback.
- */
-@property (nonatomic, copy, nullable) AVPlayerVideoComposition *videoComposition;
-
-/*!
- @property customVideoCompositor
- @abstract Indicates the custom video compositor instance.
- @discussion
-     This property is nil if there is no video compositor, or if the internal video compositor is in use. This reference can be used to provide
-    extra context to the custom video compositor instance if required.
- */
-@property (nonatomic, readonly, nullable) id<CGVideoCompositing> customVideoCompositor;
-
-
 @end
+
 
 NS_ASSUME_NONNULL_END

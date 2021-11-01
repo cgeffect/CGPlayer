@@ -1,5 +1,18 @@
 # CGCodecSDK
 
+音视频播放器
+
+1. 视频播放
+
+FFmpeg -> VideoToolbox -> OpenGL
+2. 音频播放
+FFmpeg -> PCM -> AudioQueue
+3. 精准seek, seek帧回调
+
+4. 音频播放器
+
+---
+接口文档
 /**
  CGAVPlayer 的播放状态
  
