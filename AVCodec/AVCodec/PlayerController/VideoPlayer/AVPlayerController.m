@@ -8,7 +8,6 @@
 #import "AVPlayerController.h"
 #import <AVCodecSDK/AVCodecSDK.h>
 #import "AVPlayerView.h"
-#import "AudioPlayerController.h"
 
 @interface AVPlayerController ()<CGPlayerDelegate, CGPlayerVideoOutputDelegate, CGPlayerViewDelegate, CGVideoCompositing>
 @property(nonatomic, strong)CGAVPlayer *player;
@@ -19,16 +18,10 @@
 
 @implementation AVPlayerController
 
-- (void)test:(int)a {
-    a = 0;
-}
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = UIColor.darkGrayColor;
-    
-    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"AT" style:UIBarButtonItemStyleDone target:self action:@selector(goToAT)];
-    self.navigationItem.rightBarButtonItem = item;
-    
+        
     NSString* inPath = [[NSBundle mainBundle] pathForResource:@"test" ofType:@"mp4"];
     _playerItem = [[AVTPlayerItem alloc] initWithURL:[NSURL fileURLWithPath:inPath]];
     _player = [[CGAVPlayer alloc] initWithPlayerItem:_playerItem];
@@ -127,8 +120,4 @@
     [asyncVideoCompositionRequest finishWithComposedVideoFrame:frame];
 }
 
-- (void)goToAT {
-    AudioPlayerController *vc = [[AudioPlayerController alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
-}
 @end

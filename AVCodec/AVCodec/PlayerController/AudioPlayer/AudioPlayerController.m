@@ -11,7 +11,6 @@
 
 @interface AudioPlayerController ()<CGPlayerViewDelegate, AVTAudioPlayerDelegate>
 {
-    AVTTest *_avtTest;
     AVTAudioPlayer *_audioPlayer;
     float _seekPos;
 }
@@ -28,30 +27,12 @@
     _playerView.delegate = self;
     [self.view addSubview:_playerView];
     
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"test1" ofType:@"mp4"];
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"test" ofType:@"aac"];
     _audioPlayer = [AVTAudioPlayer sharePlayer];
-    _audioPlayer.pcmPath = [self creatFile:@".pcm"];
+//    _audioPlayer.pcmPath = [self creatFile:@".pcm"];
     [_audioPlayer loadWithURL:path];
     _audioPlayer.delegate = self;
     
-    _avtTest = [[AVTTest alloc] init];
-    _avtTest.test = 10;
-}
-
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"44100_ac2_s16le" ofType:@"pcm"];
-    [_avtTest AVTAudioUnitRender:path];
-//    [_avtTest AVTAudioUnitCapture:[self creatFile:@"test_pcm"]];
-}
-
-- (NSString *)creatFile:(NSString *)fileName {
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *path = [paths objectAtIndex:0];
-    NSString *tmpPath = [path stringByAppendingPathComponent:@"temp"];
-    NSTimeInterval time = [[NSDate date] timeIntervalSince1970];
-    [[NSFileManager defaultManager] createDirectoryAtPath:tmpPath withIntermediateDirectories:YES attributes:nil error:NULL];
-    NSString* outFilePath = [tmpPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%d_%@", (int)time, fileName]];
-    return outFilePath;
 }
 
 #pragma mark -
@@ -101,4 +82,15 @@
         [_playerView setIsPlay:YES];
     }
 }
+
+- (NSString *)creatFile:(NSString *)fileName {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *path = [paths objectAtIndex:0];
+    NSString *tmpPath = [path stringByAppendingPathComponent:@"temp"];
+    NSTimeInterval time = [[NSDate date] timeIntervalSince1970];
+    [[NSFileManager defaultManager] createDirectoryAtPath:tmpPath withIntermediateDirectories:YES attributes:nil error:NULL];
+    NSString* outFilePath = [tmpPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%d_%@", (int)time, fileName]];
+    return outFilePath;
+}
+
 @end

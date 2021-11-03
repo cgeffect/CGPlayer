@@ -8,11 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		E034AA24271E5F8F00C5C683 /* AVAudioPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = E034AA23271E5F8F00C5C683 /* AVAudioPlayerView.m */; };
-		E046E77D272D3FC600221BB0 /* test1.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = E046E77C272D3FC600221BB0 /* test1.mp4 */; };
 		E04D65682716D67B000E70FE /* AudioPlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = E04D65672716D67B000E70FE /* AudioPlayerController.m */; };
-		E04D657D27171263000E70FE /* queue_pcm_48k_ac1.pcm in Resources */ = {isa = PBXBuildFile; fileRef = E04D657C27171263000E70FE /* queue_pcm_48k_ac1.pcm */; };
-		E04D657F271712F5000E70FE /* 44100_ac2_s16le.pcm in Resources */ = {isa = PBXBuildFile; fileRef = E04D657E271712F5000E70FE /* 44100_ac2_s16le.pcm */; };
-		E04D65812717179A000E70FE /* queue_pcm_48k_ac2.pcm in Resources */ = {isa = PBXBuildFile; fileRef = E04D65802717179A000E70FE /* queue_pcm_48k_ac2.pcm */; };
 		E099B10F272FE215009D8171 /* AVCodecSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E099B10E272FE215009D8171 /* AVCodecSDK.framework */; };
 		E0AF6A552713E2F00049D759 /* AVControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = E0AF6A542713E2F00049D759 /* AVControlView.m */; };
 		E0B3A37327113B6500BA6BEC /* test.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = E0B3A37227113B6500BA6BEC /* test.mp4 */; };
@@ -32,12 +28,8 @@
 /* Begin PBXFileReference section */
 		E034AA22271E5F8F00C5C683 /* AVAudioPlayerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AVAudioPlayerView.h; sourceTree = "<group>"; };
 		E034AA23271E5F8F00C5C683 /* AVAudioPlayerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AVAudioPlayerView.m; sourceTree = "<group>"; };
-		E046E77C272D3FC600221BB0 /* test1.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = test1.mp4; sourceTree = "<group>"; };
 		E04D65662716D67B000E70FE /* AudioPlayerController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AudioPlayerController.h; sourceTree = "<group>"; };
 		E04D65672716D67B000E70FE /* AudioPlayerController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AudioPlayerController.m; sourceTree = "<group>"; };
-		E04D657C27171263000E70FE /* queue_pcm_48k_ac1.pcm */ = {isa = PBXFileReference; lastKnownFileType = file; path = queue_pcm_48k_ac1.pcm; sourceTree = "<group>"; };
-		E04D657E271712F5000E70FE /* 44100_ac2_s16le.pcm */ = {isa = PBXFileReference; lastKnownFileType = file; path = 44100_ac2_s16le.pcm; sourceTree = "<group>"; };
-		E04D65802717179A000E70FE /* queue_pcm_48k_ac2.pcm */ = {isa = PBXFileReference; lastKnownFileType = file; path = queue_pcm_48k_ac2.pcm; sourceTree = "<group>"; };
 		E099B10E272FE215009D8171 /* AVCodecSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AVCodecSDK.framework; sourceTree = "<group>"; };
 		E0AF6A532713E2F00049D759 /* AVControlView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AVControlView.h; sourceTree = "<group>"; };
 		E0AF6A542713E2F00049D759 /* AVControlView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AVControlView.m; sourceTree = "<group>"; };
@@ -118,11 +110,7 @@
 		E034AA21271E5F6500C5C683 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				E046E77C272D3FC600221BB0 /* test1.mp4 */,
 				E0CEC058272BEEFF00C3103E /* test.aac */,
-				E04D65802717179A000E70FE /* queue_pcm_48k_ac2.pcm */,
-				E04D657E271712F5000E70FE /* 44100_ac2_s16le.pcm */,
-				E04D657C27171263000E70FE /* queue_pcm_48k_ac1.pcm */,
 				E0B3A37227113B6500BA6BEC /* test.mp4 */,
 			);
 			path = Resource;
@@ -227,13 +215,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				E59A7A79267B60ED004B7A02 /* Assets.xcassets in Resources */,
-				E046E77D272D3FC600221BB0 /* test1.mp4 in Resources */,
-				E04D65812717179A000E70FE /* queue_pcm_48k_ac2.pcm in Resources */,
 				E0CEC059272BEEFF00C3103E /* test.aac in Resources */,
-				E04D657F271712F5000E70FE /* 44100_ac2_s16le.pcm in Resources */,
 				E0B3A37327113B6500BA6BEC /* test.mp4 in Resources */,
 				E59A7A7A267B60ED004B7A02 /* LaunchScreen.storyboard in Resources */,
-				E04D657D27171263000E70FE /* queue_pcm_48k_ac1.pcm in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
