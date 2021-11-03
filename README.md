@@ -165,3 +165,10 @@ videoOutput.outputDelegate = self;
 - (void)output:(nonnull AVPlayerVideoOutput *)output error:(NSError *)error;
 
 ```
+
+## 版本历史
+- 1.0.0
+    - 发布第一个版本
+
+## 版本规划
+    支持点播
