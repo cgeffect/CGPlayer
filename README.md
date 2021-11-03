@@ -22,23 +22,14 @@ SDK 的 Github 地址：https://github.com/cgeffect/CGPlayer
 - [x] 新增音视频渲染首帧回调
 - [x] 支持后台自动暂停, 回到前台自动播放
 
-## 内容摘要
-
-- [快速开始](#1-快速开始)
-    - [配置工程](#配置工程)
-    - [示例代码](#示例代码)
-- [版本历史](#版本历史)
-
 ## 快速开始
-
-- Done! 运行你工程的 workspace
 
 #### 手动导入  
 
 - 根据需要，将 AVCodecSDK.framework 文件加入到工程中；
 - Build Setting 下 Other Linker Flags 中添加 -ObjC
 - Build Phases 下 Link Binary With Libraries 中添加如图所示
-![](http://sdk-release.qnsdk.com/PLPLayerKit.jpg)
+![20211103104017](https://user-images.githubusercontent.com/15692322/140003044-3bf40fbf-2c45-4229-b508-2c14fbc040c8.jpg)
 
 ### 示例代码
 
@@ -52,14 +43,14 @@ SDK 的 Github 地址：https://github.com/cgeffect/CGPlayer
 
 ```Objective-C
 NSString* inPath = [[NSBundle mainBundle] pathForResource:@"test" ofType:@"mp4"];
-_playerItem = [[AVTPlayerItem alloc] initWithURL:[NSURL fileURLWithPath:inPath]];
+AVTPlayerItem *playerItem = [[AVTPlayerItem alloc] initWithURL:[NSURL fileURLWithPath:inPath]];
 ```
 
 初始化 PLPlayer
 
 ```Objective-C
-//初始化CGAVPlayer
-_player = [[CGAVPlayer alloc] initWithPlayerItem:_playerItem];
+//初始化CGAVPlayer, CGAVPlayer必须是实例属性, 不可设置为局部变量, 否则播放器会被销毁
+_player = [[CGAVPlayer alloc] initWithPlayerItem:playerItem];
 
 //开启渲染, 否则只有声音
 _player.enableRender = YES; 
@@ -99,8 +90,8 @@ _playerLayer = [_player playerLayerWithFrame:CGRectMake(0, 100, UIScreen.mainScr
 - (void)player:(nonnull CGAVPlayer *)player statusChanged:(CGPlayerStatus)status {
     // 这里会返回流的各种状态，你可以根据状态做 UI 定制及各类其他业务操作
     // 除了 Error 状态，其他状态都会回调这个方法
-  // 第一帧渲染后，将收到第一个 CGPlayerStatusReady 状态
-  // 播放过程中，将收到 CGPlayerStatusPlaying 状态
+    // 第一帧渲染后，将收到第一个 CGPlayerStatusReady 状态
+    // 播放过程中，将收到 CGPlayerStatusPlaying 状态
 }
 
 - (void)player:(nonnull CGAVPlayer *)player stoppedWithError:(nullable NSError *)error {
@@ -108,15 +99,15 @@ _playerLayer = [_player playerLayerWithFrame:CGRectMake(0, 100, UIScreen.mainScr
 }
 
 - (void)player:(nonnull CGAVPlayer *)player progress:(int64_t)progress {
-    //进度回调
+    // 进度回调
 }
 
 - (void)player:(nonnull CGAVPlayer *)player firstRender:(AVTPlayerFirstRenderType)firstRenderType {
-    //首帧渲染的回调
+    // 首帧渲染的回调
 }
 
 - (void)player:(nonnull CGAVPlayer *)player seekToCompleted:(BOOL)isCompleted {
-    //seek完成的通知
+    // seek完成的通知
 }
 ```
 
@@ -126,21 +117,21 @@ AVPlayerVideoOutput是一个输出类, 实现代理方法可获取 播放/seek �
 ### 代码示例
 初始化输出文件配置
 ```Objective-C
-    NSDictionary *outputSettings = @{kPixelBufferPixelFormatTypeKey: @(kPixelFormatType_32BGRA)};
+NSDictionary *outputSettings = @{kPixelBufferPixelFormatTypeKey: @(kPixelFormatType_32BGRA)};
 ```
 
 初始化 AVPlayerVideoOutput
 
 ```Objective-C
     
-    //初始化AVPlayerVideoOutput
-    AVPlayerVideoOutput *videoOutput = [[AVPlayerVideoOutput alloc] initWithOutputSettings:outputSettings];
-    
-    //添加输出
-    [_player addVideoOutput:videoOutput];
-    
-    //设置代理
-    videoOutput.outputDelegate = self;
+//初始化AVPlayerVideoOutput
+AVPlayerVideoOutput *videoOutput = [[AVPlayerVideoOutput alloc] initWithOutputSettings:outputSettings];
+
+//添加输出
+[_player addVideoOutput:videoOutput];
+
+//设置代理
+videoOutput.outputDelegate = self;
 
 ```
 
