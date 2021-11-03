@@ -46,7 +46,7 @@ NSString* inPath = [[NSBundle mainBundle] pathForResource:@"test" ofType:@"mp4"]
 AVTPlayerItem *playerItem = [[AVTPlayerItem alloc] initWithURL:[NSURL fileURLWithPath:inPath]];
 ```
 
-初始化 PLPlayer
+初始化 CGAVPlayer
 
 ```Objective-C
 //初始化CGAVPlayer, CGAVPlayer必须是实例属性, 不可设置为局部变量, 否则播放器会被销毁
