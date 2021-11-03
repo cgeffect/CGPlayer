@@ -11,3 +11,5 @@ FFmpeg -> PCM -> AudioQueue
 
 视频播放器CGAVPlayer
 音频播放器AVTAudioPlayer
+
+功能持续开放中...
