@@ -1,6 +1,6 @@
-# CGCodecSDK
+# CGPlayer
 
-CGCodecSDK 是一个适用于 iOS 的音视频本地播放器 SDK，可高度定制化UI. 
+CGPlayer 是一个适用于 iOS 的音视频本地播放器 SDK，可高度定制化UI. 
 
 SDK 的 Github 地址：https://github.com/cgeffect/CGPlayer
 
