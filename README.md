@@ -1,4 +1,5 @@
 # CGPlayer
+<img width="944" alt="截屏2021-11-27 上午12 12 38" src="https://user-images.githubusercontent.com/15692322/143607953-ad9bb799-8cde-4aa8-be79-125b75d9031e.png">
 
 CGPlayer 是一个适用于 iOS 的音视频本地播放器 SDK，可高度定制化UI. 
 
